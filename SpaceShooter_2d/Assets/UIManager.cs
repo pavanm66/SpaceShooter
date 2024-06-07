@@ -11,4 +11,6 @@ public class UIManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
-  }
+
+   
+}

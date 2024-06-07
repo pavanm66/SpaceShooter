@@ -9,11 +9,13 @@ public class Player : MonoBehaviour
     public GameObject missile;
     public float fireTimer;
     public float fireRate;
+    public Vector2 spawnPos;
 
     public List<GameObject> missileList;
 
     private void Start()
     {
+        spawnPos = this.transform.position;
         missileList = new List<GameObject>();
         for (int i = 0; i < 30; i++)
         {
@@ -27,7 +29,7 @@ public class Player : MonoBehaviour
     {
 
         PlayerMovement();
-      
+
         if (Input.GetKey(KeyCode.Space))
         {
             fireTimer += Time.deltaTime;
@@ -56,14 +58,14 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(-7.83f, transform.position.y, transform.position.z);
 
         }
-        else if (transform.position.x > 7.83f)
+        else if (transform.position.x > -4.5f)
         {
-            transform.position = new Vector3(7.83f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-4.5f, transform.position.y, transform.position.z);
 
         }
 
     }
-   
+
 
     public float missileSpeed;
     public void FireMissile()
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour
     }
     GameObject GetMissileFromPool()
     {
-        
+
         return missileList.Find(x => !x.activeSelf);
     }
 

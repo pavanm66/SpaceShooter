@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         }
         set
         {
-              playerLife=value;
+            playerLife = value;
             uiManager.lifeText.text = "Lives: " + playerLife.ToString();
         }
     }
@@ -41,9 +41,10 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-        uiManager = FindObjectOfType<UIManager>();
+      //  uiManager = FindObjectOfType<UIManager>();
         PlayerLife = 3;
         Score = 0;
-        GameManager.instance.uiManager.gameOverPanel.SetActive(false);
+        uiManager.gameOverPanel.SetActive(false);
     }
+   
 }

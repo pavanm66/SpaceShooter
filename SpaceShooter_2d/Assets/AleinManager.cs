@@ -20,22 +20,22 @@ public class AleinManager : MonoBehaviour
             alien.SetActive(false);
             alienList.Add(alien);
         }
-       // StartCoroutine(ISpawnAliens());
+        StartCoroutine(ISpawnAliens());
     }
     GameObject GetAliensFromPool()
     {
         return alienList.Find(x => !x.activeSelf);
     }
 
-  /*  IEnumerator ISpawnAliens()
+    IEnumerator ISpawnAliens()
     {
         while (!GameManager.instance.isGameOver)
         {
             GameObject alien = GetAliensFromPool();
             alien.SetActive(true);
             alien.transform.position = new Vector2(spawnPoint.position.x, Random.Range(minHeight, maxHeight));
-            yield return new WaitForSeconds(Random.Range(1f,3.5f));
+            yield return new WaitForSeconds(Random.Range(1f, 3.5f));
         }
         StopCoroutine(ISpawnAliens());
-    }*/
+    }
 }
