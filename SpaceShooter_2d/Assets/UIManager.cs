@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
    public void Restart()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        Time.timeScale = 0;
     }
 
    

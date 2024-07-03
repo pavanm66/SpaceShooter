@@ -4,29 +4,34 @@ using UnityEngine;
 
 public class AleinManager : MonoBehaviour
 {
-    public GameObject alienPrefab;
+    public GameObject alienPrefab, alien_intermediatePrefab;
     public List<GameObject> alienList;
     public Transform spawnPoint;
     [SerializeField] private float minHeight;
     [SerializeField] private float maxHeight;
 
     // Start is called before the first frame update
-    void Start()
+    public void StartGame(List<GameObject> alienList, AlienType alienType)
     {
-        alienList = new List<GameObject>();
-        for (int i = 0; i < 20; i++)
+        // alienList = new List<GameObject>();
+        for (int i = 0; i < alienList.Count; i++)
         {
             GameObject alien = Instantiate(alienPrefab, transform);
+            GameObject alien_intermediate = Instantiate(alien_intermediatePrefab, transform);
             alien.SetActive(false);
+            alien_intermediate.SetActive(false);
             alienList.Add(alien);
+            alienList.Add(alien_intermediate);
         }
         StartCoroutine(ISpawnAliens());
     }
+
+    //this is to get aliens from the pool of aliens which were instantiated at the start 
     GameObject GetAliensFromPool()
     {
         return alienList.Find(x => !x.activeSelf);
     }
-
+    //This is for spawning aliens
     IEnumerator ISpawnAliens()
     {
         while (!GameManager.instance.isGameOver)

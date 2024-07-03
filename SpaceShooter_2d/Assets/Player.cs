@@ -27,9 +27,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-
         PlayerMovement();
-
         if (Input.GetKey(KeyCode.Space))
         {
             fireTimer += Time.deltaTime;
