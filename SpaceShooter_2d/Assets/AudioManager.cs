@@ -10,22 +10,51 @@ public class AudioManager : MonoBehaviour
 
    public bool IsSoundOn{
       get{
-         return value;
+         return isSoundOn;
       }
       set{
          isSoundOn = value;
-         PlayerPrefs.SetBool("isSoundOn",isSoundOn);
-      }
+            if (isSoundOn == true)
+            {
+                PlayerPrefs.SetInt("isSoundOn", 1);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("isSoundOn", 0);
+            }
+        }
    }
    public bool IsVibrationOn{
       get{
-         return value;
+         return isVibrationOn;
 
       }
       set{
          isVibrationOn=value;
-         PlayerPrefs.SetBool("isVibrationOn",isVibrationOn);
+            if (isVibrationOn == true)
+            {
+                PlayerPrefs.SetInt("isVibrationOn", 1);
+            }
+            else {
+                PlayerPrefs.SetInt("isVibrationOn", 0);
+            }
       }
+   }
+   public bool IsMusicOn{
+      get{
+         return isMusicOn;
+      }
+      set {
+         isMusicOn = value;
+            if (isMusicOn == true)
+            {
+                PlayerPrefs.SetInt("isMusicOn", 1);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("isMusicOn", 0);
+            }
+        }
    }
 
    
