@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private int playerLife;
     [SerializeField] AleinManager aleinManager;
+    
     public int PlayerLife
     {
         get
@@ -53,61 +54,67 @@ public class GameManager : MonoBehaviour
         PlayerLife = 3;
         Score = 0;
         uiManager.gameOverPanel.SetActive(false);
+        LevelStart( Waves.wave1, AlienType.beginner);
     }
 
     //This is where we make level settings.
     // Level progression depends on time.
     // each level needs to have some breathing time where we clear all enemies and reinstantiate new list 
-    public enum Levels { level1, level2, level3, level4, level5 }
-    public void LevelStart(List<GameObject> _alienList, Levels levels)
+    public enum Waves { wave1, wave2, wave3, wave4, wave5 }
+    public void LevelStart( Waves levels, AlienType alienType)//this method decides how many enemies each level should have
     {
         switch (levels)
         {
-            case Levels.level1:
-                _alienList = new List<GameObject>(5);
-                break;
-            case Levels.level2:
-                _alienList = new List<GameObject>(10);
-                break;
-            case Levels.level3:
-                _alienList = new List<GameObject>(15);
-                break;
-            case Levels.level4:
-                _alienList = new List<GameObject>(20);
-                break;
-            case Levels.level5:
-                _alienList = new List<GameObject>(25);
-                break;
-            default:
-                break;
-        }
-
-
-    }
-    public void AlienSpawnerForLevels(Levels levels, AlienType alienType)
-    {
-        switch (levels)
-        {
-            case Levels.level1:
+            case Waves.wave1:
+               
                 alienType = AlienType.beginner;
                 break;
-            case Levels.level2:
+            case Waves.wave2:
                 alienType = AlienType.beginner;
                 break;
-            case Levels.level3:
+            case Waves.wave3:
                 alienType = AlienType.intermediate;
                 break;
-            case Levels.level4:
+            case Waves.wave4:
                 alienType = AlienType.intermediate;
                 break;
-            case Levels.level5:
+            case Waves.wave5:
                 alienType = AlienType.hard;
                 break;
             default:
                 alienType = AlienType.beginner;
                 break;
         }
+      
+        aleinManager.StartGame( 5, alienType);
+
     }
+    //public void AlienSpawnerForLevels(Levels levels, AlienType alienType)//This method decides type of enemies which has to be spawned for different levels
+    //{
+    //    switch (levels)
+    //    {
+    //        case Levels.level1:
+    //            alienType = AlienType.beginner;
+    //            break;
+    //        case Levels.level2:
+    //            alienType = AlienType.beginner;
+    //            break;
+    //        case Levels.level3:
+    //            alienType = AlienType.intermediate;
+    //            break;
+    //        case Levels.level4:
+    //            alienType = AlienType.intermediate;
+    //            break;
+    //        case Levels.level5:
+    //            alienType = AlienType.hard;
+    //            break;
+    //        default:
+    //            alienType = AlienType.beginner;
+    //            break;
+    //    }
+    //}
+    //Combine both enemy type and enemy count for each level;
+
 
 }
 

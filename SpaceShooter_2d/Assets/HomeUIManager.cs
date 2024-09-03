@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class HomeUIManager : MonoBehaviour
 {
-    void Start()
+public Scenemanager scenemanager;
+    public void PlayButton()
     {
-        
+        scenemanager.LoadGameScene();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void QuitButton()
     {
-        
+        Application.Quit();
     }
 }
