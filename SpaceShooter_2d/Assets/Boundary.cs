@@ -6,6 +6,7 @@ public class Boundary : MonoBehaviour
 {
     public BoundaryType boundaryType;
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         print(collision.gameObject.tag);
@@ -15,6 +16,8 @@ public class Boundary : MonoBehaviour
                 if (collision.gameObject.CompareTag("Alien"))
                 {
                     collision.gameObject.SetActive(false);
+                    GameManager.instance.PlayerLife--;
+
                 }
                 break;
             case BoundaryType.missileBoundary:

@@ -37,7 +37,7 @@ public class AleinManager : MonoBehaviour
         {
             // Check if the number of active aliens is less than 3
             int activeAliens = alienList.Count(x => x.activeSelf);
-            if (activeAliens < 3)
+            if (activeAliens < waveManager.activeEnemyCounter)
             {
                 GameObject alien = GetAliensFromPool();
                 if (alien != null)

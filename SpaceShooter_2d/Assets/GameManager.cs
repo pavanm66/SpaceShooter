@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private int playerLife;
     [SerializeField] AleinManager aleinManager;
+    [SerializeField] WaveManager waveManager;
     
     public int PlayerLife
     {
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
         PlayerLife = 3;
         Score = 0;
         uiManager.gameOverPanel.SetActive(false);
+        waveManager.IncreaseWaves();
         LevelStart( Waves.wave1, AlienType.beginner);
     }
 
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
     public enum Waves { wave1, wave2, wave3, wave4, wave5 }
     public void LevelStart( Waves levels, AlienType alienType)//this method decides how many enemies each level should have
     {
+
         switch (levels)
         {
             case Waves.wave1:
