@@ -1,6 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -8,76 +9,68 @@ public class Player : MonoBehaviour
     public Transform shootPoint;
     public GameObject missile;
     public float fireTimer;
-    public float fireRate;
+    public float fireRate = 0.5f;
     public Vector2 spawnPos;
 
     public List<GameObject> missileList;
+ 
+    public float missileSpeed;
+
+   
+   
+    private bool isFiring;
+    [SerializeField] JoystickManager joystickManager;
 
     private void Start()
     {
-        spawnPos = this.transform.position;
+     
+
+        spawnPos = transform.position;
         missileList = new List<GameObject>();
+
+        // Initialize the missile pool
         for (int i = 0; i < 30; i++)
         {
-            GameObject bullet = (GameObject)Instantiate(missile, shootPoint.position, transform.rotation);
+            GameObject bullet = Instantiate(missile, shootPoint.position, transform.rotation);
             bullet.SetActive(false);
             missileList.Add(bullet);
         }
-
     }
-    void Update()
+
+    private void Update()
     {
-        PlayerMovement();
-        if (Input.GetKey(KeyCode.Space))
+
+        // Fire missile when space is held
+        fireTimer += Time.deltaTime;
+        if (isFiring && fireTimer > fireRate)
         {
-            fireTimer += Time.deltaTime;
-            if (fireTimer > fireRate)
-            {
-                FireMissile();
-                fireTimer = 0;
-            }
+            FireMissile();
+            fireTimer = 0;
         }
     }
-    public float verticalSpeed = 3f;
-    public float horSpeed = 3f;
-    public void PlayerMovement()
-    {
-        transform.position += new Vector3(0f, Input.GetAxis("Vertical"), 0f) * Time.deltaTime * verticalSpeed;
-        if (transform.position.y > 4f)
-        {
-            transform.position = new Vector3(transform.position.x, 4f, transform.position.z);
-        }
-        else if (transform.position.y < -4f)
-            transform.position = new Vector3(transform.position.x, -4f, transform.position.z);
 
-        transform.position += new Vector3(Input.GetAxis("Horizontal"), 0f, 0f) * Time.deltaTime * horSpeed;
-        if (transform.position.x < -7.83f)
-        {
-            transform.position = new Vector3(-7.83f, transform.position.y, transform.position.z);
-
-        }
-        else if (transform.position.x > -4.5f)
-        {
-            transform.position = new Vector3(-4.5f, transform.position.y, transform.position.z);
-
-        }
-
-    }
-
-
-    public float missileSpeed;
     public void FireMissile()
     {
-        Vector2 direction = Vector2.right;
+        Vector2 direction = Vector2.right; // You may adjust this to match your game's logic
         GameObject bullet = GetMissileFromPool();
 
         bullet.GetComponent<Missile>().Initialize(direction, missileSpeed, shootPoint.position);
-
     }
+
     GameObject GetMissileFromPool()
     {
-
         return missileList.Find(x => !x.activeSelf);
     }
 
+   
+
+    public void StartFiring()
+    {
+        isFiring = true;
+    }
+
+    public void StopFiring()
+    {
+        isFiring = false;
+    }
 }

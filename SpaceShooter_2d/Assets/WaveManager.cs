@@ -71,6 +71,7 @@ public class WaveManager : MonoBehaviour
             if (GameManager.instance.PlayerLife > 0)
             {
                 isWaveCompleted = true;
+                print("is wavecompleted and " + currentWave.waveTimer);
                 StartCoroutine(ICoolDownForNextWave());
 
             }
@@ -78,13 +79,15 @@ public class WaveManager : MonoBehaviour
     }
     IEnumerator ICoolDownForNextWave()
     {
-        while (waveCoolDownTime > 0)
+        while (waveCoolDownTime > 0 && isWaveCompleted)
         {
             waveCoolDownTime -= 1f;
+           
             yield return new WaitForSeconds(1f);
         }
         isWaveCompleted = false;
         yield return StartCoroutine(IRunWaveTimer());
     }
+
 
 }

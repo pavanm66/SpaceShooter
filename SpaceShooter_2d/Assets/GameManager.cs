@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private int playerLife;
     [SerializeField] AleinManager aleinManager;
-    [SerializeField] WaveManager waveManager;
+    //[SerializeField] WaveManager waveManager;
     
     public int PlayerLife
     {
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         PlayerLife = 3;
         Score = 0;
         uiManager.gameOverPanel.SetActive(false);
-        waveManager.IncreaseWaves();
+        aleinManager.IncreaseWaves();
         LevelStart( Waves.wave1, AlienType.beginner);
     }
 

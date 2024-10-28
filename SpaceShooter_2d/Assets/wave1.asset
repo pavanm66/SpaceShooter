@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beginnerEnemyCount: 5
   intermediateEnemyCount: 0
-  waveTimer: 30
+  waveTimer: 0
   activeEnemyCounter: 3
   enemySpawnCounter: 5
+  waveIndex: 1

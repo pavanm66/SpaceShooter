@@ -17,3 +17,4 @@ MonoBehaviour:
   waveTimer: 40
   activeEnemyCounter: 5
   enemySpawnCounter: 10
+  waveIndex: 3

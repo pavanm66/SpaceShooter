@@ -10,5 +10,6 @@ public class Wave : ScriptableObject
     public float waveTimer;
     public int activeEnemyCounter;
     public int enemySpawnCounter;
+    public int waveIndex;
 
 }
