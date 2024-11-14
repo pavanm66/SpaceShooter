@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class SettingsManager : MonoBehaviour
 {
     [SerializeField] Slider musicSlider;
-    [SerializeField] Slider soundSlider;
-    [SerializeField] Slider vibrationSlider;
+    [SerializeField] Button soundSlider;
+    [SerializeField] Button vibrationSlider;
+    [SerializeField] Button musicButton;
+    [SerializeField] Sprite onSprite;
+    [SerializeField] Sprite offSprite;
 
     private bool isMusicOn;
     public bool IsMusicOn
@@ -20,6 +23,8 @@ public class SettingsManager : MonoBehaviour
         {
             isMusicOn = value;
             PlayerPrefs.SetInt("Music", isMusicOn ? 1 : 0);
+            musicButton.image.sprite = isMusicOn ? onSprite : offSprite;
+
         }
     }
     private bool isSoundOn;
@@ -33,6 +38,7 @@ public class SettingsManager : MonoBehaviour
         {
             isSoundOn = value;
             PlayerPrefs.SetInt("Sound", isSoundOn ? 1 : 0);
+            soundSlider.image.sprite = isSoundOn ? onSprite : offSprite;
         }
     }
     private bool isVibrationOn;
@@ -47,43 +53,20 @@ public class SettingsManager : MonoBehaviour
         {
             isVibrationOn = value;
             PlayerPrefs.SetInt("Vibration", isVibrationOn ? 1 : 0);
+            vibrationSlider.image.sprite = isVibrationOn ? onSprite : offSprite;
         }
     }
+   
     public void IsMusic()
     {
         IsMusicOn =!IsMusicOn;
-        if (isMusicOn)
-        {
-            musicSlider.value = 1;
-        }
-        else
-        {
-            musicSlider.value = 0;
-        }
-
     }
     public void IsSound()
     {
         IsSoundOn = !IsSoundOn;
-        if (isSoundOn)
-        {
-            soundSlider.value = 1;
-        }
-        else
-        {
-            soundSlider.value = 0;
-        }
     }
     public void IsVibration()
     {
         IsVibrationOn = !IsVibrationOn;
-        if (!IsVibrationOn)
-        {
-            vibrationSlider.value = 1;
-        }
-        else
-        {
-            vibrationSlider.value = 0;
-        }
     }
 }

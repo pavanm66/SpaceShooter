@@ -52,7 +52,13 @@ public class AleinManager : MonoBehaviour
             }
             yield return new WaitForSeconds(Random.Range(1f, 3.5f));
         }
-        StopCoroutine(ISpawnAliens());
+        yield break;
+    }
+    bool AllAliensAreDead()
+    {
+        int activeAliens = alienList.Count(x => x.activeSelf);
+        print(activeAliens + " is active aliens");
+        return activeAliens == 0;
     }
 
 
@@ -107,21 +113,28 @@ public class AleinManager : MonoBehaviour
         activeEnemyCounter = currentWave.activeEnemyCounter;
 
         PlayerPrefs.SetInt("LastWave", waveCount);
-        StartCoroutine(IRunWaveTimer());
+        //StartCoroutine(IRunWaveTimer());
     }
     IEnumerator IRunWaveTimer()
     {
         remainingWaveTime = currentWave.waveTimer;
-        while (!isWaveCompleted && currentWave.waveTimer > 0)
+        Debug.Log("Current wave: " + remainingWaveTime);
+        Debug.Log(AllAliensAreDead() + " all aliens are dead in wave timer");
+        while (AllAliensAreDead()==false)
+        {
+            yield return null;
+        }
+        while (!isWaveCompleted && remainingWaveTime > 0)
         {
             print("here in I run WaveTimer");
-            currentWave.waveTimer -= 1f;
-            remainingWaveTime = currentWave.waveTimer;
-            yield return new WaitForSeconds(1f); // Waits until the next frame
+            remainingWaveTime -= 1f;
+            print("timer running : " + remainingWaveTime);
+            //remainingWaveTime = currentWave.waveTimer;
+            yield return new WaitForSeconds(1f); // Waits until the next second
         }
 
         // If you need to take any action when the wave timer ends
-        if (currentWave.waveTimer <= 0)
+        if (remainingWaveTime <= 0)
         {
             if (GameManager.instance.PlayerLife > 0)
             {
@@ -130,19 +143,25 @@ public class AleinManager : MonoBehaviour
                 StartCoroutine(ICoolDownForNextWave());
 
             }
+            else
+            {
+                GameManager.instance.isGameOver = true;
+            }
         }
+        yield return StartCoroutine(ISpawnAliens());
     }
     IEnumerator ICoolDownForNextWave()
     {
-      
-            while (waveCoolDownTime > 0)
-            {
-                waveCoolDownTime -= 1f;
-
-                yield return new WaitForSeconds(1f);
-            }
+            Debug.Log(" in cooldownwave timer");
+        StopCoroutine(ISpawnAliens());
+        while (waveCoolDownTime > 0)
+        {
+            waveCoolDownTime -= 1f;
+            yield return new WaitForSeconds(1f);
+        }
         isWaveCompleted = false;
-        yield return StartCoroutine(ISpawnAliens());
+        waveCoolDownTime = 5f;
+        StartCoroutine(ISpawnAliens());
         yield return StartCoroutine(IRunWaveTimer());
     }
     #endregion

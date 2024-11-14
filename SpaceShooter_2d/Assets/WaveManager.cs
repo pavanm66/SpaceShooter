@@ -79,14 +79,16 @@ public class WaveManager : MonoBehaviour
     }
     IEnumerator ICoolDownForNextWave()
     {
-        while (waveCoolDownTime > 0 && isWaveCompleted)
+        Debug.Log(" in IcoolDown coroutine");
+
+        while (waveCoolDownTime > 0 && isWaveCompleted || currentWave.waveIndex != 0)
         {
             waveCoolDownTime -= 1f;
-           
             yield return new WaitForSeconds(1f);
         }
         isWaveCompleted = false;
-        yield return StartCoroutine(IRunWaveTimer());
+        IncreaseWaves();
+        yield return new WaitForSeconds(Time.deltaTime);
     }
 
 

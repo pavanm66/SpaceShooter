@@ -23,8 +23,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-     
-
         spawnPos = transform.position;
         missileList = new List<GameObject>();
 

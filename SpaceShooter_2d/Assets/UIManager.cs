@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     public GameObject gameOverPanel;
    public void Restart()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         Time.timeScale = 0;
     }
 
