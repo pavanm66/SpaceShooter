@@ -58,11 +58,12 @@ public class WaveManager : MonoBehaviour
     }
     IEnumerator IRunWaveTimer()
     {
+        Debug.Log(currentWave.waveTimer + " is current wave timer and current wave is " + currentWave.waveIndex);
         while (!isWaveCompleted && currentWave.waveTimer > 0)
         {
             print("here in I run WaveTimer");
             currentWave.waveTimer -= 1f;
-            yield return new WaitForSeconds(1f); // Waits until the next frame
+            yield return new WaitForSeconds(1f); 
         }
 
         // If you need to take any action when the wave timer ends

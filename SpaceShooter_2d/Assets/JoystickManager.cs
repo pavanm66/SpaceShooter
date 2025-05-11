@@ -159,14 +159,10 @@ public class JoystickManager : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private void Update()
     {
         Vector2 movementDirection = new Vector2(inputVector.x, inputVector.y);
-      
-
-        print(movementDirection + " movedirection pavan and " + movementDirection.magnitude);
         if (isDragging)
         {
             if (movementDirection.magnitude > 0.1f)
             {
-                // Apply force in the movement direction
                 rb.AddForce(acceleration * speed * Time.deltaTime * movementDirection, ForceMode2D.Impulse);
             }
         }
@@ -175,6 +171,13 @@ public class JoystickManager : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             print(isDragging + " is dragging pavan");
             rb.AddForce(Vector2.zero);
         }
+#if UNITY_EDITOR
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        movementDirection = new Vector2(horizontal, vertical);
+
+        rb.AddForce(movementDirection * acceleration * speed * Time.deltaTime, ForceMode2D.Impulse);
+#endif
     }
 
     private void FixedUpdate()
