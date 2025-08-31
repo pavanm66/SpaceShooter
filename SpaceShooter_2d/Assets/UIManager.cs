@@ -6,12 +6,20 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public Text scoreText, lifeText,waveText;
-    public GameObject gameOverPanel;
+    public GameObject gameOverPanel,pausePanel;
+   [SerializeField] bool isPaused = false;
    public void Restart()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         Time.timeScale = 0;
     }
 
-   
+
+    public void PauseButton()
+    {
+        isPaused=!isPaused;
+       pausePanel.SetActive(isPaused);
+    }
+
+
 }

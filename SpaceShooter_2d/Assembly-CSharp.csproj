@@ -66,6 +66,7 @@
     <Compile Include="Assets\HomeUIManager.cs" />
     <Compile Include="Assets\JoystickManager.cs" />
     <Compile Include="Assets\Missile.cs" />
+    <Compile Include="Assets\ParallaxEffect.cs" />
     <Compile Include="Assets\Player.cs" />
     <Compile Include="Assets\Scenemanager.cs" />
     <Compile Include="Assets\SettingsManager.cs" />
