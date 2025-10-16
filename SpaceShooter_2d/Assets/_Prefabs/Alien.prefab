@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -6162910063850481657}
   - component: {fileID: 2714906606064165651}
   - component: {fileID: 7803660775600860718}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Alien
   m_TagString: Alien
   m_Icon: {fileID: 0}
@@ -113,10 +113,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.015891552, y: -0.056729198}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -127,7 +127,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.892, y: 0.732}
+  m_Size: {x: 1.105401, y: 0.8454584}
   m_EdgeRadius: 0
 --- !u!1 &4952808200748936465
 GameObject:
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 1997248308641724597}
   - component: {fileID: 2859894196818932700}
   - component: {fileID: 482105756312177554}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 8417620085697357927}
   - component: {fileID: 8096497116890886718}
   - component: {fileID: 7946904303359914722}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 4304034732619210964}
   - component: {fileID: 499666446459764691}
   - component: {fileID: 3797801946286372477}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
